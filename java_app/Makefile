@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = border-router
+CONTIKI_PROJECT = java-app
 all: $(CONTIKI_PROJECT)
 CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 CONTIKI = ../../..

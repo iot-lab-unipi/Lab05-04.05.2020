@@ -42,27 +42,14 @@
 #define UDP_CLIENT_PORT	8765
 #define UDP_SERVER_PORT	5678
 
-//static struct simple_udp_connection server_conn;
+PROCESS(udp_border_router, "UDP Border Router");
+AUTOSTART_PROCESSES(&udp_border_router);
 
-PROCESS(udp_server_process, "UDP server");
-AUTOSTART_PROCESSES(&udp_server_process);
-/*---------------------------------------------------------------------------
-static void
-udp_rx_callback(struct simple_udp_connection *c, const uip_ipaddr_t *sender_addr, uint16_t sender_port, const uip_ipaddr_t *receiver_addr, uint16_t receiver_port, const uint8_t *data, uint16_t datalen){
-	  printf("Data received on port %d from port %d with length %d, %s\n", receiver_port, sender_port, datalen, data);
-	  printf("DATA sending reply\n");
-	  simple_udp_sendto(c, "MSG RCVD", strlen("MSG RCVD") + 1, sender_addr);
-}*/
-/*---------------------------------------------------------------------------*/
-PROCESS_THREAD(udp_server_process, ev, data){
+PROCESS_THREAD(udp_border_router, ev, data){
   PROCESS_BEGIN();
 #if BORDER_ROUTER_CONF_WEBSERVER
   PROCESS_NAME(webserver_nogui_process);
   process_start(&webserver_nogui_process, NULL);
 #endif /* BORDER_ROUTER_CONF_WEBSERVER */
-
-  /* Initialize UDP connection */
-  //simple_udp_register(&server_conn, UDP_SERVER_PORT, NULL, UDP_CLIENT_PORT, udp_rx_callback);
-
   PROCESS_END();
 }

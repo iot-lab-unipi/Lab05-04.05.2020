@@ -1,4 +1,4 @@
-CONTIKI_PROJECT = border-router
+CONTIKI_PROJECT = server
 all: $(CONTIKI_PROJECT)
 CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 CONTIKI = ../../..
